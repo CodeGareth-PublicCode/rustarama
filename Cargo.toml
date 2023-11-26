@@ -1,0 +1,13 @@
+[package]
+name = "rustarama"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+scraper = "0.18.1"
+reqwest = { version = "0.11.21", features = ["blocking", "json"] }
+anyhow = "1.0.75"
+tabled = "0.14.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
