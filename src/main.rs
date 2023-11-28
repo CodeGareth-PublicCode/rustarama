@@ -1,6 +1,15 @@
 use reqwest::Error;
 use scraper::{ElementRef, Html};
 use tabled::{Table, Tabled};
+use structopt::StructOpt;
+
+#[derive(Debug, StructOpt)]
+#[structopt(name = "league-url-input", about = "CLI based football league scraper")]
+struct Args {
+    #[structopt(short, long)]
+    league_table_url: String,
+
+}
 
 #[derive(Tabled)]
 struct LeagueData {
@@ -23,8 +32,11 @@ struct LeagueData {
 }
 
 fn main() {
+
+    let args = Args::from_args();
+
     let target_url: String =
-        String::from("https://www.thenationalleague.org.uk/match-info/tables?table_id=d-9900645");
+        String::from(args.league_table_url);
 
     let scrape_result: String = match do_throttled_request(&target_url) {
         Ok(v) => v,
